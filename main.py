@@ -27,9 +27,6 @@ def RenderScreen():
 
     print(bottomBorder[0] * bottomBorder[1])
 
-def AiMakeSelection():
-    pass
-
 def CheckWin():
     # Horizontal win check
     for y in screenMatrix:
@@ -82,24 +79,38 @@ def SwitchTurn():
     currentPlayer = 2 if (currentPlayer == 1) else 1
     return currentPlayer
 
-def PlaceToken(value, x, y):
+def PlaceToken(screenMatrix, value, x, y):
+    screenMatrix = screenMatrix.copy()
     screenMatrix[y][x] = str(value)
+    return screenMatrix
 
-def DropToken(value, x):
+def DropToken(screenMatrix, value, x):
+    screenMatrix = screenMatrix.copy()
     # kollar om raden är full.
     if screenMatrix[0][x] != emptyToken:
-        return -1
+        return -1, screenMatrix
 
     # kollar nerifrån och upp tills den hittar en tom plats
     for y in range(row-1, -1, -1):
         if screenMatrix[y][x] == emptyToken:
-            PlaceToken(str(value), x, y)
-            return 0
+            screenMatrix = PlaceToken(screenMatrix, str(value), x, y)
+            return 0, screenMatrix
     
     # ifall något går riktigt fel, så returnar den error 2
-    return -2
+    return -2, screenMatrix
+
+def AiMakeSelection():
+    
+    pass
+
+def GetBestMove():
+    
+    pass
+    
 
 def main():
+    global screenMatrix
+    
     while 1:
         RenderScreen()
 
@@ -113,8 +124,11 @@ def main():
             if playerSelection < 1 or playerSelection > colum: continue
 
         # Kollar om spelaren kan lägga sin token
-        dropTokenResult = DropToken(currentPlayer, playerSelection - 1)
-        if dropTokenResult < 0: continue
+        dropTokenResult = DropToken(screenMatrix, currentPlayer, playerSelection - 1)
+        if dropTokenResult[0] < 0:
+            continue
+        else:
+            screenMatrix = dropTokenResult[1]
 
         winStatus = CheckWin()
         if winStatus in (1, 2):
