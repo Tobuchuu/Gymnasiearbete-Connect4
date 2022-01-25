@@ -27,14 +27,14 @@ def RenderScreen():
 
     print(bottomBorder[0] * bottomBorder[1])
 
-def CheckWin():
+def CheckWin(bruh):
     # Horizontal win check
     for y in screenMatrix:
         temp = "".join(y)
 
-        if "1" * 4 in temp:
+        if "1" * bruh in temp:
             return 1
-        if "2" * 4 in temp:
+        if "2" * bruh in temp:
             return 2
     
     # Vertical win check
@@ -43,9 +43,9 @@ def CheckWin():
         for y in range(row):
             temp += screenMatrix[y][x]
     
-        if "1" * 4 in temp:
+        if "1" * bruh in temp:
             return 1
-        if "2" * 4 in temp:
+        if "2" * bruh in temp:
             return 2
 
     # Diagonal win check \
@@ -53,9 +53,9 @@ def CheckWin():
         for x in range(0, colum - 3):
             temp = "".join(screenMatrix[y+i][x+i] for i in range(4))
             
-            if "1" * 4 in temp:
-                return 1
-            if "2" * 4 in temp:
+            if "1" * bruh in temp:
+                
+            if "2" * bruh in temp:
                 return 2
 
     # Diagonal win check /
@@ -63,9 +63,9 @@ def CheckWin():
         for x in range(colum - 1, 0, -1):
             temp = "".join(screenMatrix[y+i][x-i] for i in range(4))
             
-            if "1" * 4 in temp:
+            if "1" * bruh in temp:
                 return 1
-            if "2" * 4 in temp:
+            if "2" * bruh in temp:
                 return 2
 
     # Kollar om det blir oavgjort
