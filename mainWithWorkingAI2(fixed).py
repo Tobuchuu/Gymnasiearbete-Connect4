@@ -1,3 +1,5 @@
+# Followed https://github.com/KeithGalli/Connect4-Python/blob/503c0b4807001e7ea43a039cb234a4e55c4b226c/connect4_with_ai.py
+
 import numpy as np
 import random
 import sys
