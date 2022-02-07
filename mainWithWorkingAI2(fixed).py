@@ -13,7 +13,7 @@ COLUMN_COUNT = 7
 playerColors = ("1", "4")
 playerTokens = ("X", "O")
 
-aiPlayers = (0, 1)
+aiPlayers = (1, 1)
 aiDepth =   (5, 5)
 
 emptyToken = 0
